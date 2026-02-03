@@ -6,6 +6,7 @@ class ACFSModernThemePlugin extends ThemePlugin {
      * Ініціалізація теми: підключення стилів та скриптів
      */
     public function init() {
+        
         // 1. Підключаємо Google Fonts (Merriweather та Inter)
         $this->addStyle('googleFonts', 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300&display=swap', array('contexts' => 'frontend'));
 
@@ -37,8 +38,10 @@ class ACFSModernThemePlugin extends ThemePlugin {
                 }
             }
         ", array('contexts' => 'frontend', 'inline' => true));
+ 
     }
-
+    
+    
     /**
      * Назва теми в адмін-панелі
      */

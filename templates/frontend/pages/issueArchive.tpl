@@ -12,29 +12,59 @@
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {foreach from=$issues item=issue}
+            {assign var=issueId value=""}
+            {if is_object($issue) && method_exists($issue, 'getBestIssueId')}
+                {assign var=issueId value=$issue->getBestIssueId()}
+            {elseif isset($issue.id)}
+                {assign var=issueId value=$issue.id}
+            {/if}
+
+            {assign var=issueIdentification value=""}
+            {if is_object($issue) && method_exists($issue, 'getIssueIdentification')}
+                {assign var=issueIdentification value=$issue->getIssueIdentification()}
+            {elseif isset($issue.issueIdentification)}
+                {assign var=issueIdentification value=$issue.issueIdentification}
+            {/if}
+
+            {assign var=issueDescription value=""}
+            {if is_object($issue) && method_exists($issue, 'getLocalizedDescription')}
+                {assign var=issueDescription value=$issue->getLocalizedDescription()}
+            {elseif isset($issue.description)}
+                {assign var=issueDescription value=$issue.description}
+            {/if}
+
+            {assign var=cover value=""}
+            {if is_object($issue) && method_exists($issue, 'getLocalizedCoverImageUrl')}
+                {assign var=cover value=$issue->getLocalizedCoverImageUrl()}
+            {elseif isset($issue.coverImage)}
+                {assign var=cover value=$issue.coverImage}
+            {/if}
+
             <div class="group bg-white rounded-lg border border-slate-200 overflow-hidden hover:shadow-md transition">
-                {if $issue->getLocalizedCoverReference()}
-                    <a href="{url op="view" path=$issue->getBestIssueId()}">
+                {if $cover}
+                    <a href="{url op="view" path=$issueId}">
                         <img class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-105" 
-                             src="{$issue->getLocalizedCoverImageUrl()|escape}" 
-                             alt="{$issue->getIssueIdentification()|escape}">
+                             src="{$cover|escape}" 
+                             alt="{$issueIdentification|escape}">
                     </a>
                 {/if}
                 <div class="p-6">
                     <h2 class="font-serif text-xl font-bold text-slate-900 group-hover:text-brand-900 transition mb-2">
-                        <a href="{url op="view" path=$issue->getBestIssueId()}">
-                            {$issue->getIssueIdentification()|escape}
+                        <a href="{url op="view" path=$issueId}">
+                            {$issueIdentification|escape}
                         </a>
                     </h2>
-                    <p class="text-sm text-slate-500 line-clamp-2">
-                        {$issue->getLocalizedDescription()|strip_tags}
-                    </p>
+                    {if $issueDescription}
+                        <p class="text-sm text-slate-500 line-clamp-2">
+                            {$issueDescription|strip_tags}
+                        </p>
+                    {/if}
                 </div>
             </div>
         {/foreach}
     </div>
 
-    {* Пагінація OJS *}
+    {* Пагинация OJS *}
     {if $prevPage || $nextPage}
         <div class="mt-12 flex justify-center gap-4">
             {if $prevPage}

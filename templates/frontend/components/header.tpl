@@ -5,17 +5,40 @@
 	{capture assign="pageTitleTranslated"}{translate key=$pageTitle}{/capture}
 {/if}
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>
-		{$pageTitleTranslated|strip_tags}
-		{if $pageTitleTranslated && $displayPageHeaderTitle && $displayPageHeaderTitle|strip_tags !== $pageTitleTranslated|strip_tags}
-			| {$displayPageHeaderTitle|strip_tags}
-		{/if}
-	</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{$pageTitleTranslated|strip_tags}</title>
 
-	{* OJS автоматично підключить Tailwind, шрифти та іконки, зареєстровані в ACFSModernThemePlugin.inc.php *}
-	{load_header context="frontend"}
+    {* Google Fonts *}
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300&display=swap">
+
+    {* Tailwind CSS *}
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    {* Phosphor Icons *}
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    {* Tailwind config inline *}
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                    },
+                    colors: {
+                        brand: {
+                            900: '#1a202c',
+                            800: '#2d3748',
+                            accent: '#C5A572',
+                            light: '#f7fafc',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
 </head>
 
 <body class="bg-slate-50 text-slate-800 font-sans antialiased flex flex-col min-h-screen">

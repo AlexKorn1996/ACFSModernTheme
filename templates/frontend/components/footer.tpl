@@ -61,7 +61,9 @@
     </footer>
 
     {* Підключаємо системні скрипти OJS перед закриттям body *}
-    {load_footer context="frontend"}
+    
+   
+
 
 </body>
 </html>
