@@ -42,6 +42,9 @@ class ACFSModernThemePlugin extends ThemePlugin {
     /**
      * Назва теми в адмін-панелі
      */
+    public function getName() {
+        return 'acfsmodern';
+    }
     public function getDisplayName() {
         return 'ACFS Modern Theme';
     }
