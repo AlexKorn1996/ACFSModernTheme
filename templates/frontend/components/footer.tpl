@@ -1,106 +1,67 @@
+{**
+ * templates/frontend/components/footer.tpl
+ *
+ * ACFSModern theme footer
+ *}
+	</main> {* Закриваємо тег <main>, відкритий у header.tpl *}
 
-<!DOCTYPE html>
-<html lang="{$currentLocale|replace:"_":"-"}" xml:lang="{$currentLocale|replace:"_":"-"}">
-{if !$pageTitleTranslated}
-	{capture assign="pageTitleTranslated"}{translate key=$pageTitle}{/capture}
-{/if}
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>
-		{$pageTitleTranslated|strip_tags}
-		{if $pageTitleTranslated && $displayPageHeaderTitle && $displayPageHeaderTitle|strip_tags !== $pageTitleTranslated|strip_tags}
-			| {$displayPageHeaderTitle|strip_tags}
-		{/if}
-	</title>
-
-	{* OJS автоматично підключить Tailwind, шрифти та іконки, зареєстровані в ACFSModernThemePlugin.inc.php *}
-	{load_header context="frontend"}
-</head>
-
-<body class="bg-slate-50 text-slate-800 font-sans antialiased flex flex-col min-h-screen">
-
-    <div class="bg-brand-900 text-slate-300 text-xs py-2 border-b border-slate-700">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
-            <div class="flex items-center space-x-4">
-                <span class="flex items-center"><i class="ph ph-check-circle text-brand-accent mr-1"></i> ISSN 1993-0917</span>
-                <span class="hidden sm:inline text-slate-500">|</span>
-                <span class="hidden sm:flex items-center hover:text-white transition cursor-pointer">Scopus Indexed</span>
-                <span class="hidden sm:inline text-slate-500">|</span>
-                <span class="hidden sm:flex items-center hover:text-white transition cursor-pointer">Category "A"</span>
-            </div>
-            <div class="flex items-center space-x-4">
-                {* Блок входу/реєстрації *}
-                {if $isUserLoggedIn}
-                    <a href="{url page="user" op="profile"}" class="hover:text-white transition">{$currentUser->getUsername()|escape}</a>
-                    <span class="text-slate-600">|</span>
-                    <a href="{url page="login" op="signOut"}" class="hover:text-white transition">{translate key="user.logOut"}</a>
-                {else}
-                    <a href="{url page="login"}" class="hover:text-white transition">{translate key="about.onlineSubmissions.login"}</a>
-                    <span class="text-slate-600">|</span>
-                    <a href="{url page="user" op="register"}" class="hover:text-white transition">{translate key="about.onlineSubmissions.register"}</a>
-                {/if}
-            </div>
-        </div>
-    </div>
-
-    <header class="bg-white sticky top-0 z-50 shadow-sm border-b border-slate-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <div class="flex items-center gap-3">
-                    <a href="{$baseUrl}" class="flex items-center gap-3 group">
-                        <div class="w-10 h-10 bg-brand-900 text-white flex items-center justify-center rounded font-serif font-bold text-xl transition-transform group-hover:scale-105">
-                            {if $displayPageHeaderLogo}
-                                <img style="max-width: 100%; max-height: 100%;" src="{$publicFilesDir}/{$displayPageHeaderLogo.uploadName|escape:"url"}" alt="{$displayPageHeaderTitle|escape}">
-                            {else}
-                                K
-                            {/if}
-                        </div>
-                        <div class="leading-tight">
-                            <div class="text-xs uppercase tracking-wider text-slate-500 font-semibold">ННЦ «ІСЕ ім. Засл. проф. М. С. Бокаріуса»</div>
-                            <h1 class="font-serif font-bold text-lg sm:text-xl text-slate-900 group-hover:text-brand-800 transition">
-                                {$displayPageHeaderTitle} <span class="text-brand-accent">.</span>
-                            </h1>
-                        </div>
-                    </a>
+    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
+            
+            <div class="col-span-1 md:col-span-2">
+                <h5 class="text-white font-serif font-bold text-lg mb-4">
+                    {$displayPageHeaderTitle}
+                </h5>
+                <p class="text-sm leading-relaxed mb-4 max-w-sm">
+                    {if $journalDescription}
+                        {$journalDescription|strip_tags|truncate:250}
+                    {else}
+                        {translate key="journal.about"}
+                    {/if}
+                </p>
+                <div class="flex gap-4">
+                    <a href="#" class="hover:text-white transition"><i class="ph ph-facebook-logo text-xl"></i></a>
+                    <a href="#" class="hover:text-white transition"><i class="ph ph-twitter-logo text-xl"></i></a>
+                    <a href="#" class="hover:text-white transition"><i class="ph ph-linkedin-logo text-xl"></i></a>
                 </div>
+            </div>
+            
+            <div>
+                <h5 class="text-white font-bold text-sm uppercase tracking-wider mb-4">
+                    {translate key="navigation.infoFor"}
+                </h5>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="{url page="about" op="editorialPolicies"}" class="hover:text-brand-accent transition">Редакційна політика</a></li>
+                    <li><a href="{url page="about" op="submissions" anchor="publicationEthics"}" class="hover:text-brand-accent transition">Етика публікацій</a></li>
+                    <li><a href="{url page="about" op="submissions" anchor="peerReviewProcess"}" class="hover:text-brand-accent transition">Рецензування</a></li>
+                    <li><a href="{url page="about" op="contact"}" class="hover:text-brand-accent transition">{translate key="about.contact"}</a></li>
+                </ul>
+            </div>
 
-                <nav class="hidden md:flex items-center">
-                    {load_menu name="primary" id="primaryNav" ulClass="flex space-x-8 text-sm font-medium text-slate-600"}
-                </nav>
-
-                <div class="hidden md:flex items-center space-x-3">
-                    <a href="{url page="search"}" class="text-slate-400 hover:text-brand-900 transition p-2">
-                        <i class="ph ph-magnifying-glass text-xl"></i>
-                    </a>
-                    <a href="{url page="submission" op="wizard"}" class="bg-brand-900 hover:bg-brand-800 text-white px-5 py-2.5 rounded-full text-sm font-medium transition shadow-lg shadow-blue-900/20">
-                        {translate key="about.onlineSubmissions.submitArticle"}
-                    </a>
-                </div>
-
-                <div class="md:hidden flex items-center">
-                    <button onclick="toggleMobileMenu()" class="text-slate-900 p-2 focus:outline-none">
-                        <i class="ph ph-list text-2xl"></i>
-                    </button>
+            <div>
+                <h5 class="text-white font-bold text-sm uppercase tracking-wider mb-4">Indexing</h5>
+                <div class="flex flex-wrap gap-2">
+                    <span class="px-2 py-1 bg-slate-800 rounded text-[10px] font-bold border border-slate-700 uppercase">Scopus</span>
+                    <span class="px-2 py-1 bg-slate-800 rounded text-[10px] font-bold border border-slate-700 uppercase">Web of Science</span>
+                    <span class="px-2 py-1 bg-slate-800 rounded text-[10px] font-bold border border-slate-700 uppercase">Google Scholar</span>
+                    <span class="px-2 py-1 bg-slate-800 rounded text-[10px] font-bold border border-slate-700 uppercase">Index Copernicus</span>
                 </div>
             </div>
         </div>
 
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100 absolute w-full left-0 shadow-lg overflow-hidden transition-all">
-            <div class="px-4 pt-2 pb-6 space-y-1">
-                {load_menu name="primary" id="mobileNav" ulClass="flex flex-col" liClass="block px-3 py-3 text-base font-medium text-slate-700 hover:bg-slate-50 rounded-md"}
-                <a href="{url page="submission" op="wizard"}" class="block px-3 py-3 text-base font-medium text-slate-900 font-bold hover:bg-slate-50 rounded-md text-brand-accent">
-                    {translate key="about.onlineSubmissions.submitArticle"}
-                </a>
-            </div>
+        <div class="max-w-7xl mx-auto px-4 mt-12 pt-8 border-t border-slate-800 text-xs text-center">
+            <p>
+                &copy; {$smarty.now|date_format:"%Y"} {$displayPageHeaderTitle|escape}. 
+                {translate key="common.allRightsReserved"}
+            </p>
+            <p class="mt-2 opacity-50">
+                {translate key="about.aboutThisPublishingSystem"}
+            </p>
         </div>
-    </header>
+    </footer>
 
-    <script>
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
-        }
-    </script>
+    {* Підключаємо системні скрипти OJS перед закриттям body *}
+    {load_footer context="frontend"}
 
-    <main class="flex-grow">
+</body>
+</html>
