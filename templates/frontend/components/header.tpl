@@ -1,50 +1,23 @@
 <!DOCTYPE html>
 <html lang="{$currentLocale|replace:"_":"-"}" xml:lang="{$currentLocale|replace:"_":"-"}">
 {if !$pageTitleTranslated}
-	{capture assign="pageTitleTranslated"}{translate key=$pageTitle}{/capture}
+    {capture assign="pageTitleTranslated"}{translate key=$pageTitle}{/capture}
 {/if}
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{$pageTitleTranslated|strip_tags}</title>
 
-    {* Google Fonts *}
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300&display=swap">
-
-    {* Tailwind CSS *}
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    {* Phosphor Icons *}
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
-
-    {* Tailwind config inline *}
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        serif: ['Merriweather', 'serif'],
-                    },
-                    colors: {
-                        brand: {
-                            900: '#1a202c',
-                            800: '#2d3748',
-                            accent: '#C5A572',
-                            light: '#f7fafc',
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+    {* Все стили (Google Fonts) и скрипты (Tailwind, Phosphor), 
+       зарегистрированные в ACFSModernThemePlugin.inc.php, 
+       будут автоматически вставлены сюда через {load_header}
+    *}
     {load_header}
 </head>
 
 <body class="bg-slate-50 text-slate-800 font-sans antialiased flex flex-col min-h-screen">
 
-<body class="bg-slate-50 text-slate-800 font-sans antialiased flex flex-col min-h-screen">
-
+    {* Верхняя панель *}
     <div class="bg-brand-900 text-slate-300 text-xs py-2 border-b border-slate-700">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
             <div class="flex items-center space-x-4">
@@ -55,7 +28,6 @@
                 <span class="hidden sm:flex items-center hover:text-white transition cursor-pointer">Category "A"</span>
             </div>
             <div class="flex items-center space-x-4">
-                {* Блок входу/реєстрації *}
                 {if $isUserLoggedIn}
                     <a href="{url page="user" op="profile"}" class="hover:text-white transition">{$currentUser->getUsername()|escape}</a>
                     <span class="text-slate-600">|</span>
