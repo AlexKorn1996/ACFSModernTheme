@@ -8,16 +8,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{$pageTitleTranslated|strip_tags}</title>
 
-    {* Все стили (Google Fonts) и скрипты (Tailwind, Phosphor), 
-       зарегистрированные в ACFSModernThemePlugin.inc.php, 
-       будут автоматически вставлены сюда через {load_header}
+    {* КРИТИЧЕСКИЙ ВЫЗОВ: 
+       Сюда автоматически вставятся Google Fonts, Tailwind (включая ваш inline config) 
+        и Phosphor Icons, которые вы зарегистрировали в ACFSModernThemePlugin.inc.php.
     *}
     {load_header}
 </head>
 
 <body class="bg-slate-50 text-slate-800 font-sans antialiased flex flex-col min-h-screen">
 
-    {* Верхняя панель *}
+    {* Верхняя панель информационной поддержки *}
     <div class="bg-brand-900 text-slate-300 text-xs py-2 border-b border-slate-700">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
             <div class="flex items-center space-x-4">
@@ -83,6 +83,7 @@
             </div>
         </div>
 
+        {* Мобильное меню *}
         <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100 absolute w-full left-0 shadow-lg overflow-hidden transition-all">
             <div class="px-4 pt-2 pb-6 space-y-1">
                 {load_menu name="primary" id="mobileNav" ulClass="flex flex-col" liClass="block px-3 py-3 text-base font-medium text-slate-700 hover:bg-slate-50 rounded-md"}
