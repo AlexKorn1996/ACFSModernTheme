@@ -1,0 +1,6 @@
+name: Deploy Theme to OJS via FTP
+
+on:
+  push:
+    branches:
+      - main  # Убедитесь, что ваша ветка называется main (или замените на master)
