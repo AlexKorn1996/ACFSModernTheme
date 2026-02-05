@@ -3,7 +3,8 @@ name: Deploy Theme to OJS via FTP
 on:
   push:
     branches:
-
+      - main
+  workflow_dispatch: 
 
 jobs:
   web-deploy:
@@ -19,9 +20,8 @@ jobs:
         server: ${{ secrets.FTP_SERVER }}
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
-        # Путь к папке темы относительно корня сайта
         server-dir: plugins/themes/acfsmodern/
-        # Мы исключаем git-файлы, чтобы не мусорить на сервере
+       
         exclude: |
           **/.git*
           **/.github*
