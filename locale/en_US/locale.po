@@ -64,3 +64,24 @@ msgstr "Search Results for <em>{$query}</em>"
 
 msgid "plugins.themes.healthSciences.search.params"
 msgstr "Search Parameters"
+
+msgid "about.onlineSubmissions.submitArticle"
+msgstr "Sumbit Article"
+
+msgid "navigation.infoFor"
+msgstr "Menu"
+
+msgid "navigation.infoFor.readers"
+msgstr "For Readers"
+
+msgid "navigation.infoFor.authors"
+msgstr "For Authors"
+
+msgid "navigation.infoFor.librarians"
+msgstr "For Librarians"
+
+msgid "journal.about"
+msgstr "About the Journal"
+
+msgid "common.allRightsReserved"
+msgstr "All Rights Reserved"
