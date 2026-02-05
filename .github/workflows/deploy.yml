@@ -20,8 +20,6 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: locale/uk_UA
           server-dir: plugins/themes/acfsmodern/
-          exclude:
-            - "**/.git/**"
-            - "**/.github/**"
-            - "**/node_modules/**"
+        
