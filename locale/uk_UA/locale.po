@@ -61,3 +61,24 @@ msgstr "Результати пошуку по запиту <em>{$query}</em>"
 
 msgid "plugins.themes.healthSciences.search.params"
 msgstr "Параметри пошуку"
+
+msgid "about.onlineSubmissions.submitArticle"
+msgstr "Надіслати наукову роботу"
+
+msgid "navigation.infoFor"
+msgstr "Інформаційна панель"
+
+msgid "navigation.infoFor.readers"
+msgstr "Для читачів"
+
+msgid "navigation.infoFor.authors"
+msgstr "Для авторів"
+
+msgid "navigation.infoFor.librarians"
+msgstr "Для бібліотекарів"
+
+msgid "journal.about"
+msgstr "Про журнал"
+
+msgid "common.allRightsReserved"
+msgstr "Всі права захищені"
