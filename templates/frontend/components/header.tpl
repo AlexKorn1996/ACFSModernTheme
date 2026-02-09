@@ -21,11 +21,13 @@
     <div class="bg-brand-900 text-slate-300 text-xs py-2 border-b border-slate-700">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
             <div class="flex items-center space-x-4">
-                <span class="flex items-center"><i class="ph ph-check-circle text-brand-accent mr-1"></i> ISSN 1993-0917</span>
+                <span class="flex items-center"><i class="ph ph-check-circle text-brand-accent mr-1"></i>ISSN: 2709-099X</span>
                 <span class="hidden sm:inline text-slate-500">|</span>
-                <span class="hidden sm:flex items-center hover:text-white transition cursor-pointer">Scopus Indexed</span>
+  <span class="flex items-center"><i class="ph ph-check-circle text-brand-accent mr-1"></i> eISSN: 2709-1007</span>
                 <span class="hidden sm:inline text-slate-500">|</span>
-                <span class="hidden sm:flex items-center hover:text-white transition cursor-pointer">Category "A"</span>
+                <span class="hidden sm:flex items-center hover:text-white transition cursor-pointer">Внесено до Переліку НФВУ</span>
+                <span class="hidden sm:inline text-slate-500">|</span>
+                <span class="hidden sm:flex items-center hover:text-white transition cursor-pointer">Категорія "Б"</span>
             </div>
             <div class="flex items-center space-x-4">
                 {if $isUserLoggedIn}
