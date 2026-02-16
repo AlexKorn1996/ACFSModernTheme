@@ -12,7 +12,36 @@
        Сюда автоматически вставятся Google Fonts, Tailwind (включая ваш inline config) 
         и Phosphor Icons, которые вы зарегистрировали в ACFSModernThemePlugin.inc.php.
     *}
-    {load_header}
+   {* Google Fonts *}
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300&display=swap">
+
+    {* Tailwind CSS *}
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    {* Phosphor Icons *}
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    {* Tailwind config inline *}
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                    },
+                    colors: {
+                        brand: {
+                            900: '#1a202c',
+                            800: '#2d3748',
+                            accent: '#C5A572',
+                            light: '#f7fafc',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
 </head>
 
 <body class="bg-slate-50 text-slate-800 font-sans antialiased flex flex-col min-h-screen">
@@ -90,7 +119,7 @@
             <div class="px-4 pt-2 pb-6 space-y-1">
                 {load_menu name="primary" id="mobileNav" ulClass="flex flex-col" liClass="block px-3 py-3 text-base font-medium text-slate-700 hover:bg-slate-50 rounded-md"}
                 <a href="{url page="submission" op="wizard"}" class="block px-3 py-3 text-base font-medium text-slate-900 font-bold hover:bg-slate-50 rounded-md text-brand-accent">
-                    {translate key="about.onlineSubmissions.submitArticle"}
+                    {translate key="about.onlineSubmissions.newSubmission"}
                 </a>
             </div>
         </div>
