@@ -13,6 +13,8 @@ jobs:
     steps:
       - name: Get latest code
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # Важливо: дозволяє бачити історію змін для точного визначення оновлених файлів
 
       - name: Sync files via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
@@ -20,6 +22,13 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: locale/en_US/
-          server-dir: plugins/themes/acfsmodern/locale/en_US/
-        
+          # Змінюємо на корінь репозиторію, щоб бачити всі файли (templates, index.php тощо)
+          local-dir: ./ 
+          # Вказуємо повний шлях до папки теми на вашому хостингу
+          server-dir: plugins/themes/acfsmodern/
+          # (Опціонально) Виключаємо файли GitHub та ліцензії, щоб вони не займали місце на сервері
+          exclude: |
+            **/.git*
+            **/.github**
+            LICENSE
+            README.md
